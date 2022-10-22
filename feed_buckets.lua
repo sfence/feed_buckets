@@ -24,7 +24,7 @@ if minetest.get_modpath("hades_aquaz") then
 			},
 			on_use = feed_buckets.use_bucket_of_feed_from_def,
 			on_place = feed_buckets.use_bucket_of_feed_from_def,
-			on_secondary_use = feed_bucekts.use_bucket_of_feed_from_def,
+			on_secondary_use = feed_buckets.use_bucket_of_feed_from_def,
 		})
 	minetest.register_craft({
 			output = "feed_buckets:bucket_algae_feed",
@@ -53,7 +53,7 @@ if adaptation.seagrass then
 			},
 			on_use = feed_buckets.use_bucket_of_feed_from_def,
 			on_place = feed_buckets.use_bucket_of_feed_from_def,
-			on_secondary_use = feed_bucekts.use_bucket_of_feed_from_def,
+			on_secondary_use = feed_buckets.use_bucket_of_feed_from_def,
 		})
 	minetest.register_craft({
 			output = "feed_buckets:bucket_seagrass",
