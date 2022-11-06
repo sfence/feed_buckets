@@ -7,6 +7,7 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 
 dofile(modpath.."/adaptation.lua")
 
+dofile(modpath.."/fake_player.lua")
 dofile(modpath.."/functions.lua")
 
 dofile(modpath.."/feed_buckets.lua")

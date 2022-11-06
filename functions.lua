@@ -13,6 +13,13 @@ local function check_follow(follow, feed_item)
   return false
 end
 
+local function redef_get_wielded_item(self)
+  return ItemStack(self._feed_item)
+end
+local function redef_set_wielded_item(self)
+  
+end
+
 function feed_buckets.use_bucket_of_feed(itemstack, user, pointed_thing, feed_data)
   local feed_pos = user:get_pos()
   if (pointed_thing.type=="node") then
@@ -24,6 +31,11 @@ function feed_buckets.use_bucket_of_feed(itemstack, user, pointed_thing, feed_da
   local objects = minetest.get_objects_inside_radius(feed_pos, feed_data.max_distance)
   
   local feeds = 0
+  local user_redef = feed_buckets.new_fake_player(user)
+  user_redef._feed_item = feed_data.feed_item
+  user_redef.get_wielded_item = redef_get_wielded_item
+  user_redef.set_wielded_item = redef_set_wielded_item
+  
   for _,object in pairs(objects) do
     local luaentity = object:get_luaentity()
     if luaentity and (luaentity.follow) then
@@ -32,8 +44,7 @@ function feed_buckets.use_bucket_of_feed(itemstack, user, pointed_thing, feed_da
         follow = string.split(follow, ",")
       end
       if check_follow(follow, feed_data.feed_item) then
-        user:set_wielded_item(ItemStack(feed_data.feed_item))
-        luaentity:on_rightclick(user)
+        luaentity:on_rightclick(user_redef)
         feeds = feeds + 1
       end
     end
